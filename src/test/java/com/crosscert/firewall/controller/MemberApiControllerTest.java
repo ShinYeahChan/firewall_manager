@@ -6,9 +6,9 @@ import com.crosscert.firewall.entity.Ip;
 import com.crosscert.firewall.entity.IpAddress;
 import com.crosscert.firewall.entity.Member;
 import com.crosscert.firewall.entity.Role;
-import com.crosscert.firewall.repository.IPRepository;
+import com.crosscert.firewall.repository.IpRepository;
 import com.crosscert.firewall.repository.MemberRepository;
-import com.crosscert.firewall.service.IPService;
+import com.crosscert.firewall.service.IpService;
 import com.crosscert.firewall.service.MemberService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.*;
@@ -41,13 +41,13 @@ class MemberApiControllerTest {
     MemberService memberService;
 
     @Autowired
-    IPService ipService;
+    IpService ipService;
 
     @Autowired
     MemberRepository memberRepository;
 
     @Autowired
-    IPRepository ipRepository;
+    IpRepository ipRepository;
 
     @Autowired
     private DatabaseCleanup databaseCleanup;
@@ -106,6 +106,8 @@ class MemberApiControllerTest {
             MemberDTO.Request.Edit editDto = new MemberDTO.Request.Edit(
                     Role.LEADER, "222.222.222.222", "123.123.123.123"
             );
+
+
             ObjectMapper mapper = new ObjectMapper();
             //when then
             ResultActions result = mockMvc.perform(put("/api/member/{id}", member.getId())
